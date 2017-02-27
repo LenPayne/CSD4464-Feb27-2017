@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p>ID: <h:inputText 
+                    value="#{itemsController.currentItem.id}" /></p>
+            <p>Name: <h:inputText 
+                    value="#{itemsController.currentItem.name}" /></p>
+            <p>Description: <h:inputText 
+                    value="#{itemsController.currentItem.description}" /></p>
+            <p>Quantity: <h:inputText 
+                    value="#{itemsController.currentItem.quantity}" /></p>
+            <p><h:commandButton 
+                    action="#{itemsController.add(itemsController.currentItem)}" 
+                    value="Add" />
+
+            </p>
+            <h:dataTable value="#{itemsController.items}" var="item">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                    #{item.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    #{item.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Description</f:facet>
+                    #{item.description}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Quantity</f:facet>
+                    #{item.quantity}
+                </h:column>
+                <h:column>
+                    <h:commandButton action="#{itemsController.set(item.id, itemsController.currentItem)}" value="Save As This One" />
+                </h:column>
+                <h:column>
+                    <h:commandButton action="#{itemsController.delete(item.id)}" value="Delete" />
+                </h:column>
+            </h:dataTable>
+
+        </h:form>
+    </h:body>
+</html>
+
